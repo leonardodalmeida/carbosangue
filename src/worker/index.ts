@@ -2,28 +2,25 @@ import { Hono } from "hono";
 import { getCookie, setCookie } from "hono/cookie";
 import { sign, verify } from "hono/jwt";
 
-// Tipagem para o ambiente do Worker
 type Bindings = {
   DB: D1Database;
 };
 
-// Tipagem para o Payload do Usuário
-type UserPayload = {
-  id: string;
-  email: string;
+// Adicionamos a variável 'user' explicitamente no contexto do Hono
+type Variables = {
+  user: any;
 };
 
-const app = new Hono<{ Bindings: Bindings }>();
+const app = new Hono<{ Bindings: Bindings; Variables: Variables }>();
 const JWT_SECRET = "segredo-super-seguro-carbosangue-2026";
 const COOKIE_NAME = "carbosangue_session";
 
-// Middleware tipado
 const authMiddleware = async (c: any, next: any) => {
   const token = getCookie(c, COOKIE_NAME);
   if (!token) return c.json({ error: "Não autorizado" }, 401);
   try {
     const payload = await verify(token, JWT_SECRET);
-    c.set("jwtPayload", payload); // Usando a chave padrão do Hono para evitar erros de tipo
+    c.set("user", payload); // Voltamos para 'user' para bater com o resto das rotas
     await next();
   } catch (err) {
     return c.json({ error: "Token inválido" }, 401);
