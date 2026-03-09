@@ -2,22 +2,28 @@ import { Hono } from "hono";
 import { getCookie, setCookie } from "hono/cookie";
 import { sign, verify } from "hono/jwt";
 
-// Forçamos a tipagem global para o compilador
+// Tipagem para o ambiente do Worker
 type Bindings = {
-  DB: any;
+  DB: D1Database;
+};
+
+// Tipagem para o Payload do Usuário
+type UserPayload = {
+  id: string;
+  email: string;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
 const JWT_SECRET = "segredo-super-seguro-carbosangue-2026";
 const COOKIE_NAME = "carbosangue_session";
 
-// Middleware com tipagem flexível para passar no build
+// Middleware tipado
 const authMiddleware = async (c: any, next: any) => {
   const token = getCookie(c, COOKIE_NAME);
   if (!token) return c.json({ error: "Não autorizado" }, 401);
   try {
     const payload = await verify(token, JWT_SECRET);
-    c.set("user", payload);
+    c.set("jwtPayload", payload); // Usando a chave padrão do Hono para evitar erros de tipo
     await next();
   } catch (err) {
     return c.json({ error: "Token inválido" }, 401);

@@ -1,5 +1,4 @@
 import { Heart, MapPin, Mail, Phone, Database } from "lucide-react";
-
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-white">
