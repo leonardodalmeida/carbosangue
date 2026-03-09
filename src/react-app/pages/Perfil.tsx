@@ -14,7 +14,7 @@ const BLOOD_TYPES = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 export default function PerfilPage() {
   const { user, isPending, logout } = useAuth();
   const navigate = useNavigate();
-  const [profile, setProfile] = useState<any>(null);
+  const [, setProfile] = useState<any>(null);
   const [name, setName] = useState("");
   const [selectedBloodType, setSelectedBloodType] = useState("");
   const [isSaving, setIsSaving] = useState(false);
