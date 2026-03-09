@@ -3,10 +3,9 @@ import { getCookie, setCookie } from "hono/cookie";
 import { sign, verify } from "hono/jwt";
 
 type Bindings = {
-  DB: D1Database;
+  DB: D1Database; // Agora combina com o binding "DB" do wrangler.json
 };
 
-// Adicionamos a variável 'user' explicitamente no contexto do Hono
 type Variables = {
   user: any;
 };
@@ -57,6 +56,8 @@ app.post("/api/auth/login", async (c) => {
   if (!user) return c.json({ error: "Invalido" }, 401);
   const token = await sign(user, JWT_SECRET);
   setCookie(c, COOKIE_NAME, token, { httpOnly: true, path: "/", sameSite: "Lax", secure: true, maxAge: 60 * 60 * 24 * 7 });
+  // Mude para false temporariamente para testar no seu computador
+  // setCookie(c, COOKIE_NAME, token, { httpOnly: true, path: "/", sameSite: "Lax", secure: false, maxAge: 60 * 60 * 24 * 7 });
   return c.json({ success: true, user });
 });
 

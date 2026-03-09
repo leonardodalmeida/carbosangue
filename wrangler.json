@@ -11,12 +11,13 @@
 	},
 	"upload_source_maps": true,
 	"assets": {
+		"directory": "dist",
 		"not_found_handling": "single-page-application"
 	},
 	"d1_databases": [
 
 		{
-			"binding": "carbosangue_db",
+			"binding": "DB",
 			"database_name": "carbosangue-db",
 			"database_id": "7b204fa4-97cd-4137-ab90-13d9e01d4d80",
 			"remote": true
