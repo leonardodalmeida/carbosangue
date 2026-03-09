@@ -1,0 +1,45 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "019ccf63-8434-7503-8556-dfae31473ccf",
+	"main": "./src/worker/index.ts",
+	"compatibility_date": "2025-06-17",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true,
+	"assets": {
+		"not_found_handling": "single-page-application"
+	},
+	"d1_databases": [
+		// {
+		// 	"binding": "DB",
+		// 	"database_name": "019ccf63-8434-7503-8556-dfae31473ccf",
+		// 	"database_id": "019ccf63-8434-7503-8556-dfae31473ccf"
+		// },
+		{
+			"binding": "carbosangue_db",
+			"database_name": "carbosangue-db",
+			"database_id": "7b204fa4-97cd-4137-ab90-13d9e01d4d80",
+			"remote": true
+		}
+	],
+	// "r2_buckets": [
+	// 	{
+	// 		"binding": "R2_BUCKET",
+	// 		"bucket_name": "019ccf63-8434-7503-8556-dfae31473ccf"
+	// 	}
+	// ],
+	// "services": [
+	//   {
+	//     "binding": "EMAILS",
+	//     "service": "emails-service",
+	//     "entrypoint": "EmailService",
+	//     "props": {
+	//       "appId": "019ccf63-8434-7503-8556-dfae31473ccf"
+	//     }
+	//   }
+	// ]
+}
