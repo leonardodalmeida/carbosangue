@@ -1,6 +1,6 @@
 import { Heart, MapPin, Mail, Phone, Database } from "lucide-react";
 
-const LOGO_URL = "https://019ccf63-8434-7503-8556-dfae31473ccf.mochausercontent.com/logo_carbosangue.png";
+// const LOGO_URL = "https://019ccf63-8434-7503-8556-dfae31473ccf.mochausercontent.com/logo_carbosangue.png";
 
 export default function Footer() {
   return (
