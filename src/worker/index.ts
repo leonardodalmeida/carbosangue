@@ -4,6 +4,7 @@ import { sign, verify } from "hono/jwt";
 
 type Bindings = {
   DB: D1Database; // Agora combina com o binding "DB" do wrangler.json
+  ASSETS: any;
 };
 
 type Variables = {
@@ -103,6 +104,11 @@ app.post("/api/transport/book", authMiddleware, async (c) => {
     await c.env.DB.prepare("UPDATE transport_schedules SET available_seats = available_seats - 1 WHERE id = ?").bind(schedule_id).run();
     return c.json({ success: true });
   } catch (e) { return c.json({ error: "Erro" }, 400); }
+});
+
+app.get('*', async (c) => {
+  // Qualquer rota que não seja da API, devolve os arquivos estáticos do React
+  return await c.env.ASSETS.fetch(c.req.raw);
 });
 
 export default app;
