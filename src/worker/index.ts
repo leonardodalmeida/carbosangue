@@ -62,6 +62,15 @@ app.post("/api/auth/login", async (c) => {
   return c.json({ success: true, user });
 });
 
+app.post("/api/auth/logout", async (c) => {
+  setCookie(c, COOKIE_NAME, "", { 
+    httpOnly: true, 
+    path: "/", 
+    maxAge: 0 // maxAge 0 é o que faz o navegador destruir o cookie imediatamente
+  });
+  return c.json({ success: true });
+});
+
 app.get("/api/users/me", authMiddleware, async (c) => {
   const user = c.get("user") as any;
   const { results } = await c.env.DB.prepare("SELECT * FROM user_profiles WHERE user_id = ?").bind(user.id).all();
