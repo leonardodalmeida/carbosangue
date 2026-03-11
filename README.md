@@ -1,4 +1,3 @@
-```markdown
 # 🩸 CarboSangue
 
 **CarboSangue** é uma plataforma moderna e responsiva dedicada à gestão e incentivo da doação de sangue. O sistema conecta doadores, mantém o registro de histórico médico básico e organiza a logística de transporte, facilitando o deslocamento seguro de voluntários até os hemocentros.
@@ -35,24 +34,19 @@ Para rodar o CarboSangue na sua máquina, você precisará do [Node.js](https://
 ```bash
 git clone https://github.com/leonardodalmeida/carbosangue.git
 cd carbosangue
-
 ```
 
 ### 2. Instalar Dependências
-
 ```bash
 npm install
-
 ```
 
 ### 3. Rodar o Ambiente de Desenvolvimento
-
 O projeto utiliza o Wrangler (CLI da Cloudflare) para simular o ambiente de produção localmente e conectar-se ao banco de dados remoto da nuvem.
 
 ```bash
 # Inicia o frontend (Vite) e o backend (Hono) simultaneamente
 npx wrangler dev --remote
-
 ```
 
 O site estará disponível em `http://127.0.0.1:8787`. Todas as alterações no código serão recarregadas automaticamente (Hot Module Replacement).
@@ -65,19 +59,17 @@ O deploy deste projeto é totalmente automatizado via **Cloudflare Pages CI/CD**
 
 Sempre que um novo commit é enviado para a branch `main` do GitHub, a Cloudflare intercepta a mudança, executa o comando de build configurado (`npm run build`) e publica a nova versão globalmente em questão de segundos.
 
-* **Frontend:** Construído em `dist/client`.
-* **Backend:** Empacotado pelo ESBuild em um arquivo `_worker.js` interceptador para gerenciar as rotas `/api/*`.
+- **Frontend:** Construído em `dist/client`.
+- **Backend:** Empacotado pelo ESBuild em um arquivo `_worker.js` interceptador para gerenciar as rotas `/api/*`.
 
 ---
 
 ## 🗄️ Gerenciamento do Banco de Dados
 
 O banco de dados oficial pode ser gerenciado de duas formas:
-
 1. **Visualmente:** Através do painel da Cloudflare (Workers & Pages > D1 > `carbosangue-db`).
 2. **Via Terminal (Wrangler CLI):**
-```bash
-# Exemplo para consultar usuários direto do terminal
-npx wrangler d1 execute carbosangue-db --remote --command="SELECT * FROM users;"
-
-```
+   ```bash
+   # Exemplo para consultar usuários direto do terminal
+   npx wrangler d1 execute carbosangue-db --remote --command="SELECT * FROM users;"
+   ```
