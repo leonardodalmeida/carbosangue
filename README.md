@@ -81,3 +81,5 @@ O banco de dados oficial pode ser gerenciado de duas formas:
 npx wrangler d1 execute carbosangue-db --remote --command="SELECT * FROM users;"
 
 ```
+
+```
