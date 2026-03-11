@@ -33,7 +33,7 @@ Para rodar o CarboSangue na sua máquina, você precisará do [Node.js](https://
 
 ### 1. Clonar o Repositório
 ```bash
-git clone [https://github.com/leonardodalmeida/carbosangue.git](https://github.com/leonardodalmeida/carbosangue.git)
+git clone https://github.com/leonardodalmeida/carbosangue.git
 cd carbosangue
 
 ```
@@ -79,7 +79,5 @@ O banco de dados oficial pode ser gerenciado de duas formas:
 ```bash
 # Exemplo para consultar usuários direto do terminal
 npx wrangler d1 execute carbosangue-db --remote --command="SELECT * FROM users;"
-
-```
 
 ```
