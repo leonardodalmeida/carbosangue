@@ -41,7 +41,7 @@
     "wrangler": "^4.33.0"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && npx esbuild src/worker/index.ts --bundle --outfile=dist/client/_worker.js --format=esm",
     "cf-typegen": "wrangler types",
     "check": "tsc && vite build && wrangler deploy --dry-run",
     "dev": "vite",
